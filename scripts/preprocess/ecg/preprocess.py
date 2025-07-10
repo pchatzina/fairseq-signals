@@ -211,7 +211,7 @@ def segment_mat(row, seconds, expected_sample_rate):
         )
 
     # Segment
-    segment_size = seconds * expected_sample_rate
+    segment_size = int(seconds * expected_sample_rate)
     n_segments = feats.shape[-1] // segment_size
 
     data["curr_sample_size"] = segment_size
