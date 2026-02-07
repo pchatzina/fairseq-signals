@@ -9,9 +9,6 @@ import subprocess
 import sys
 from setuptools import setup, find_packages, Extension
 
-from setuptools import Extension, find_packages, setup
-
-
 if sys.version_info < (3, 6):
     sys.exit("Sorry, Python >= 3.6 is required for fairseq.")
 
@@ -151,12 +148,14 @@ if "clean" in sys.argv[1:]:
     import subprocess
 
     subprocess.run(
-        ["rm -f fairseq_signals/*.so fairseq_signals/**/*.so fairseq_signals/*.pyd fairseq_signals/**/*.pyd"],
+        [
+            "rm -f fairseq_signals/*.so fairseq_signals/**/*.so fairseq_signals/*.pyd fairseq_signals/**/*.pyd"
+        ],
         shell=True,
     )
 
 
-extra_packages = []
+extra_packages = ["fairseq_signals_scripts"]
 # if os.path.exists(os.path.join("fairseq", "model_parallel", "megatron", "mpu")):
 #     extra_packages.append("fairseq.model_parallel.megatron.mpu")
 
@@ -202,13 +201,12 @@ def do_setup(package_data):
             exclude=[
                 "examples",
                 "examples.*",
-                "scripts",
-                "scripts.*",
                 "tests",
                 "tests.*",
             ]
         )
         + extra_packages,
+        package_dir={"fairseq_signals_scripts": "scripts"},
         package_data=package_data,
         ext_modules=extensions,
         test_suite="tests",
@@ -224,7 +222,7 @@ def do_setup(package_data):
                 "fairseq-validate = fairseq_cli.validate:cli_main",
                 "fairseq-hydra-validate = fairseq_cli.hydra_validate:cli_main",
                 "fairseq-inference = fairseq_cli.inference:cli_main",
-                "fairseq-hydra-inference = fairseq_cli.hydra_inference:cli_main"
+                "fairseq-hydra-inference = fairseq_cli.hydra_inference:cli_main",
             ],
         },
         cmdclass=cmdclass,
@@ -252,7 +250,8 @@ if __name__ == "__main__":
 
         package_data = {
             "fairseq_signals": (
-                get_files(fairseq_examples) + get_files(os.path.join("fairseq_signals", "config"))
+                get_files(fairseq_examples)
+                + get_files(os.path.join("fairseq_signals", "config"))
             )
         }
         do_setup(package_data)
