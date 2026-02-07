@@ -1,3 +1,11 @@
+# Fork notice
+
+This is a fork of `fairseq-signals`, adapted for use in the  
+**multimodal-sepsis-prediction** project:
+
+https://github.com/pchatzina/multimodal-sepsis-prediction
+
+
 # Fairseq-signals
 
 Fairseq-signals is a collection of deep learning models for ECG data processing based on the [`fairseq`](https://github.com/pytorch/fairseq).
