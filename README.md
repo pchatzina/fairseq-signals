@@ -1,10 +1,6 @@
 # Fork notice
 
-This is a fork of `fairseq-signals`, adapted for use in the  
-**multimodal-sepsis-prediction** project:
-
-https://github.com/pchatzina/explainable-sepsis-prediction
-
+This is a fork of `fairseq-signals`, adapted for use in other projects.
 
 # Fairseq-signals
 
